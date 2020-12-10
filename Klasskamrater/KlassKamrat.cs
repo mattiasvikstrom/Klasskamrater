@@ -48,7 +48,9 @@ namespace Klasskamrater
 
         public override string ToString()
         {
-            return $"{namn} , {ålder} , {längd}";
+            return $"\nHej jag heter {namn}, är {ålder} gammal och {längd}cm lång. Jag bor i {bor} och på min fritid tycker jag om att {hobby}. Min favoritmat är {favoritMat} " +
+                   $"och dricker helst {favoritDryck}, när det kommer till musik så lyssnar jag mest på {favoritBand}. Slutligen om mig så har jag {barn} barn, trevligt att träffas!\n" +
+                   $"\n{namn}'s driv när det kommer till programmering: {programmeringsDriv}";
         }
     }
 }

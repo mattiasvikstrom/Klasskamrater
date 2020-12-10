@@ -30,6 +30,7 @@ namespace Klasskamrater
                         ListMembers(people);
 
                         //tar in user input för att kunna ta fram informationen om rätt person
+                        Console.Write("input: ");
                         int nummer = Convert.ToInt32(Console.ReadLine()); //lägg till felhantering för om någon skriver in namnet.
                         KlassKamrat People = people[nummer - 1];          
                         Console.WriteLine(People);

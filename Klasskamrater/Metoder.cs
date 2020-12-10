@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Klasskamrater
 {
-    class Metoder : KlassKamrat
+    class Metoder
     {
+        //Huvudmetoden för programmet. 
         public static void Run()
         {
+            List<KlassKamrat> people = MedlemsHanterare.LoadSampleData();
+            
             Loggin();
-
+            
             int menyVal = 0;
             do
             {
@@ -24,57 +26,27 @@ namespace Klasskamrater
                 {
                     case 1:
                         Console.Clear();
-                        ListMembers(medlemmar);
-                        Console.WriteLine("\nVem vill du ha information om?");
-                        string personVal = Console.ReadLine().ToLower().Trim(); // säkra input genom borttagande av mellanslag och gör om text till lowercase för att tillåta stora bokstäver i input.
-                        switch (personVal) // kan det optimeras. istället för en lång switch? bättre sätt att läsa inputs. kan detta lösas med en metod att valet gör att en specifik lista läses från.
-                        {
-                            case "emil":
-                                Console.WriteLine(emil.Describe());
-                                break;
-                            case "tina":
-                                Console.WriteLine(tina.Describe());
-                                break;
-                            case "benny":
-                                Console.WriteLine(benny.Describe());
-                                break;
-                            case "josefine":
-                                Console.WriteLine(josefine.Describe());
-                                break;
-                            case "fredrik":
-                                Console.WriteLine(fredrik.Describe());
-                                break;
-                            case "dennis":
-                                Console.WriteLine(dennis.Describe());
-                                break;
-                            case "håkan":
-                                Console.WriteLine(håkan.Describe());
-                                break;
-                            case "tobias":
-                                Console.WriteLine(tobias.Describe());
-                                break;
-                            case "nicklas":
-                                Console.WriteLine(nicklas.Describe());
-                                break;
-                            case "mattias":
-                                Console.WriteLine(mattias.Describe());
-                                break;
-                        }
+                        Console.WriteLine("\nVem vill du se mer om");
+                        ListMembers(people);
 
+                        //tar in user input för att kunna ta fram informationen om rätt person
+                        int nummer = Convert.ToInt32(Console.ReadLine()); //lägg till felhantering för om någon skriver in namnet.
+                        KlassKamrat People = people[nummer - 1];          
+                        Console.WriteLine(People);
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("\nAnge nummret på personen du vill ta bort?");
-                        ListMembers(medlemmar);
+                        Console.WriteLine("\nVem vill du ta bort?");
+                        ListMembers(people);
 
-                        int nummer = Convert.ToInt32(Console.ReadLine()); //TODO: lägg till felhantering för om någon skriver in namnet.
-                        var användare = medlemmar[nummer - 1];
-                        //TODO: lägga till verifiering på borttagningen
-                        medlemmar.Remove(användare);
+                        nummer = Convert.ToInt32(Console.ReadLine()); //lägg till felhantering för om någon skriver in namnet.
+                        var användare = people[nummer - 1];
+
+                        people.Remove(användare);
                         break;
                     case 3:
                         Console.Clear();
-                        ListMembers(medlemmar);
+                        ListMembers(people);
                         break;
                     case 4:
                         Environment.Exit(0);
@@ -83,26 +55,23 @@ namespace Klasskamrater
             } while (menyVal != 4);
         }
 
-        private static void ListMembers(List<KlassKamrat> medlemmar)
+        // listar alla medlemmar i KlassKamrat med numrering.
+        private static void ListMembers(List<KlassKamrat> People)
         {
             int i = 1;
             
-            foreach (var item in medlemmar) // listar alla medlemmar i KlassKamrat med numrering.
+            foreach (var item in People) 
             {
-                //Console.Write(item.namn); // separering med ', ' . vill dock stapla lista för mer tydlighet kring medlemmarna och valet man sen ska göra.
-                //for (i = 0; i < medlemmar.Count - 1; i++)
-                //{
-                //    Console.Write(", ");
-                //}
-                Console.WriteLine($"{i++}. {item.namn}");
+                Console.WriteLine($"{i++}. {item.Namn}");
             }
         }
-        public static void Loggin() // inloggningsmetod
+
+        // jämför lösenordet if success annars felmeddelande och validerar lösenordet
+        public static void Loggin()
         {
             bool loginSuccess = false;
 
-            // jämför lösenordet if success annars felmeddelande.
-            // validerar lösenordet
+            
             while (loginSuccess == false)
             {
                 Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
@@ -118,6 +87,5 @@ namespace Klasskamrater
                 }
             }
         }
-        
     }
 }

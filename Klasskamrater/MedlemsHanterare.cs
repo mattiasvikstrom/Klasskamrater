@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Klasskamrater
 {
     public class MedlemsHanterare
     {
-        public static List<KlassKamrat> LoadSampleData()
+        public static List<KlassKamrat> PopuleraLista()
         {
             //Lägger till alla medlemmar i lista people med all information från denna fil , separat och fint!
+            //Här kan fler klasskamrater läggas till och programmet kan hantera det.
             List<KlassKamrat> populera = new List<KlassKamrat>();
 
             populera.Add(new KlassKamrat { Namn = "Emil Örjes", Ålder = 26, Längd = 184, Bor = "Falun", Hobby = "Snowboard, Gitarr, Musik, Hunden, Tv-spel", FavoritMat = "Feta hamburgare ", FavoritDryck = "Öl", FavoritBand = "System Of a Down", Barn = 0, ProgrammeringsDriv = "Att lära sig ett nytt yrke helt från grunden som känns givande." });
@@ -21,6 +21,11 @@ namespace Klasskamrater
             populera.Add(new KlassKamrat { Namn = "Tobias Binett", Ålder = 31, Längd = 192, Bor = "Hudiksvall", Hobby = "Träning, Musik, Spel och Familjen", FavoritMat = "Kött", FavoritDryck = "Öl", FavoritBand = "The Black Dahlia Murder", Barn = 2, ProgrammeringsDriv = "Att kunna skapa något användbart för mig själv och andra och att ha möjligheten att arbeta med det." });
             populera.Add(new KlassKamrat { Namn = "Nicklas Eriksson", Ålder = 26, Längd = 175, Bor = "Umeå", Hobby = "Skidor, cykel, simma, springa, fjällvandring, klättring och dataspel", FavoritMat = "Gröt med jordnötssmör", FavoritDryck = "Whiskey", FavoritBand = "Falling in Reverse och Self Deception", Barn = 0, ProgrammeringsDriv = "Drivet kommer från att man får vara kreativ och en problemlösare på samma gång. Sen så drivs man såklart av att få testa på en annan karriär än den man har haft tidigare " });
             populera.Add(new KlassKamrat { Namn = "Mattias Vikström", Ålder = 33, Längd = 187, Bor = "Umeå", Hobby = "odla gurka", FavoritMat = "Cowboysoppa", FavoritDryck = "Gin och Tonic", FavoritBand = "Infected Mushroom", Barn = 0, ProgrammeringsDriv = "Personlig utveckling och kreativitet" });
+
+            //extrapersoner för att expandera listan ytterligare.
+            //populera.Add(new KlassKamrat { Namn = "Annan Person", Ålder = 33, Längd = 187, Bor = "Umeå", Hobby = "odla gurka", FavoritMat = "Cowboysoppa", FavoritDryck = "Gin och Tonic", FavoritBand = "Infected Mushroom", Barn = 0, ProgrammeringsDriv = "Personlig utveckling och kreativitet" });
+            //populera.Add(new KlassKamrat { Namn = "ÄnnuAnnan Person", Ålder = 33, Längd = 187, Bor = "Umeå", Hobby = "odla gurka", FavoritMat = "Cowboysoppa", FavoritDryck = "Gin och Tonic", FavoritBand = "Infected Mushroom", Barn = 0, ProgrammeringsDriv = "Personlig utveckling och kreativitet" });
+            //populera.Add(new KlassKamrat { Namn = "ÄnnuÄnnuAnnan Person", Ålder = 33, Längd = 187, Bor = "Umeå", Hobby = "odla gurka", FavoritMat = "Cowboysoppa", FavoritDryck = "Gin och Tonic", FavoritBand = "Infected Mushroom", Barn = 0, ProgrammeringsDriv = "Personlig utveckling och kreativitet" });
             return populera;
         }
     }

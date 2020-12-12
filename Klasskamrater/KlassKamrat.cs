@@ -52,5 +52,10 @@ namespace Klasskamrater
                    $"och dricker helst {favoritDryck}, när det kommer till musik så lyssnar jag mest på {favoritBand}. Slutligen om mig så har jag {barn} barn, trevligt att träffas!\n" +
                    $"\n{namn}'s driv när det kommer till programmering: {programmeringsDriv}";
         }
+        public string Deleted() // skriver ut beksivning på medlemmar i KlassKamrat
+        {
+            string description = $"\nDu tog bort {namn}";
+            return description;
+        }
     }
 }

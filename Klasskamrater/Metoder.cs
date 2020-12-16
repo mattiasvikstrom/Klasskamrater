@@ -5,9 +5,10 @@ namespace Klasskamrater
 {
     class Metoder
     {
-        //Huvudmenyn för programmet.
+        //Huvudmenyn för programmet. 
         public static void Run()
         {
+            //Kallar på PopuleraLista som lägger till våra klasskamrater i people
             List<KlassKamrat> people = MedlemsHanterare.PopuleraLista();
             Loggin();
             int menyVal;
@@ -20,31 +21,16 @@ namespace Klasskamrater
                 Console.WriteLine("4. Avsluta\n");
 
                 menyVal = Convert.ToInt32(Console.ReadLine());
-                int intNummer;
 
                 switch (menyVal)
                 {
                     case 1:
-                        Console.Clear();
-                        Console.WriteLine("\nVem vill du se mer om");
-                        ListMembers(people);
-                        //tar in user input för att kunna ta fram informationen om rätt person
-                        Console.Write("input: ");
-                        string stringNummer = Console.ReadLine();
-                        intNummer = ListSpecific(people, stringNummer);
-
+                        ListSpecific(people);
                         break;
                     case 2:
-                        Console.Clear();
-                        Console.WriteLine("\nVem vill du ta bort?");
-                        ListMembers(people);
-                        Console.Write("input: ");
-                        stringNummer = Console.ReadLine();
-                        intNummer = DeleteSpecific(people, stringNummer);
-
+                        DeleteSpecific(people);
                         break;
                     case 3:
-                        Console.Clear();
                         ListMembers(people);
                         break;
                     case 4:
@@ -54,8 +40,13 @@ namespace Klasskamrater
             } while (menyVal != 4);
         }
         // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
-        private static int DeleteSpecific(List<KlassKamrat> people, string stringNummer)
+        private static void DeleteSpecific(List<KlassKamrat> people)
         {
+            Console.Clear();
+            Console.WriteLine("\nVem vill du ta bort?");
+            ListMembers(people);
+            Console.Write("input: ");
+            string stringNummer = Console.ReadLine();
             int intNummer;
             if (Int32.TryParse(stringNummer, out intNummer) && intNummer >= 1 && intNummer <= people.Count && people.Count != 0)
             {
@@ -68,11 +59,16 @@ namespace Klasskamrater
             {
                 Console.WriteLine("Ojdå. där fanns det ingen klasskamrat.");
             }
-            return intNummer;
         }
         // Listar en specifk person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
-        private static int ListSpecific(List<KlassKamrat> people, string stringNummer)
+        private static void ListSpecific(List<KlassKamrat> people)
         {
+            Console.Clear();
+            Console.WriteLine("\nVem vill du se mer om");
+            ListMembers(people);
+            Console.Write("input: ");
+            string stringNummer = Console.ReadLine();
+
             int intNummer;
             if (Int32.TryParse(stringNummer, out intNummer) && intNummer >= 1 && intNummer <= people.Count && people.Count != 0)
             {
@@ -83,12 +79,12 @@ namespace Klasskamrater
             {
                 Console.WriteLine("Ojdå. välj en klasskamrat i listan");
             }
-            return intNummer;
         }
 
         // listar alla medlemmar i KlassKamrat med numrering för att underlätta val av medlem
         private static void ListMembers(List<KlassKamrat> People)
         {
+            Console.Clear();
             int i = 1;
             foreach (var item in People) 
             {

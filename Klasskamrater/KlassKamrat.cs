@@ -46,16 +46,18 @@ namespace Klasskamrater
             public string ProgrammeringsDriv { get => programmeringsDriv; set => programmeringsDriv = value; }
             public static List<KlassKamrat> People { get => People; set => People = value; }
 
+        // skriver ut beksivningen på medlemmar i KlassKamrat
         public override string ToString()
         {
             return $"\nHej jag heter {namn}, är {ålder} gammal och {längd}cm lång. Jag bor i {bor} och på min fritid tycker jag om att {hobby}. Min favoritmat är {favoritMat} " +
                    $"och dricker helst {favoritDryck}, när det kommer till musik så lyssnar jag mest på {favoritBand}. Slutligen om mig så har jag {barn} barn, trevligt att träffas!\n" +
                    $"\n{namn}'s driv när det kommer till programmering: {programmeringsDriv}";
         }
-        public string Deleted() // skriver ut beksivning på medlemmar i KlassKamrat
+        //När en medlem tas bort från listan skrivs det även ut namnet på den som blev borttagen då man väljer med en siffra.
+        public string Deleted() 
         {
-            string description = $"\nDu tog bort {namn}";
-            return description;
+            string output = $"\nDu tog bort {namn}";
+            return output;
         }
     }
 }

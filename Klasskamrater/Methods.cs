@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Klasskamrater
 {
-    class Metoder
+    class Methods
     {
         //Huvudmenyn för programmet. 
         public static void Run()
         {
             //Kallar på PopuleraLista som lägger till våra klasskamrater i people
-            List<KlassKamrat> people = MedlemsHanterare.PopuleraLista();
+            List<ClassMates> people = MemberHandler.PopulateList();
             Loggin();
-            int menyVal;
+            int menuChoice;
 
             do
             {
@@ -20,9 +21,9 @@ namespace Klasskamrater
                 Console.WriteLine("3. Lista alla medlemmar");
                 Console.WriteLine("4. Avsluta\n");
 
-                menyVal = Convert.ToInt32(Console.ReadLine());
+                menuChoice = Convert.ToInt32(Console.ReadLine());
 
-                switch (menyVal)
+                switch (menuChoice)
                 {
                     case 1:
                         ListSpecific(people);
@@ -37,42 +38,42 @@ namespace Klasskamrater
                         Environment.Exit(0);
                         break;
                 }
-            } while (menyVal != 4);
+            } while (menuChoice != 4);
         }
         // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
-        private static void DeleteSpecific(List<KlassKamrat> people)
+        private static void DeleteSpecific(List<ClassMates> people)
         {
             Console.Clear();
             Console.WriteLine("\nVem vill du ta bort?");
             ListMembers(people);
             Console.Write("input: ");
-            string stringNummer = Console.ReadLine();
-            int intNummer;
-            if (Int32.TryParse(stringNummer, out intNummer) && intNummer >= 1 && intNummer <= people.Count && people.Count != 0)
+            string stringNumber = Console.ReadLine();
+            int intNumber;
+            if (Int32.TryParse(stringNumber, out intNumber) && intNumber >= 1 && intNumber <= people.Count && people.Count != 0)
             {
-                var användare = people[intNummer - 1];
+                var user = people[intNumber - 1];
                 Console.Clear();
-                Console.WriteLine(people[intNummer - 1].Deleted());
-                people.Remove(användare);
+                Console.WriteLine(people[intNumber - 1].Deleted());
+                people.Remove(user);
             }
             else
             {
                 Console.WriteLine("Ojdå. där fanns det ingen klasskamrat.");
             }
         }
-        // Listar en specifk person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
-        private static void ListSpecific(List<KlassKamrat> people)
+        // Listar en specifik person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
+        private static void ListSpecific(List<ClassMates> people)
         {
             Console.Clear();
             Console.WriteLine("\nVem vill du se mer om");
             ListMembers(people);
             Console.Write("input: ");
-            string stringNummer = Console.ReadLine();
+            string stringNumber = Console.ReadLine();
 
-            int intNummer;
-            if (Int32.TryParse(stringNummer, out intNummer) && intNummer >= 1 && intNummer <= people.Count && people.Count != 0)
+            int intNumber;
+            if (Int32.TryParse(stringNumber, out intNumber) && intNumber >= 1 && intNumber <= people.Count && people.Count != 0)
             {
-                KlassKamrat People = people[intNummer - 1];
+                ClassMates People = people[intNumber - 1];
                 Console.WriteLine(People);
             }
             else
@@ -82,13 +83,13 @@ namespace Klasskamrater
         }
 
         // listar alla medlemmar i KlassKamrat med numrering för att underlätta val av medlem
-        private static void ListMembers(List<KlassKamrat> People)
+        private static void ListMembers(List<ClassMates> People)
         {
             Console.Clear();
             int i = 1;
             foreach (var item in People) 
             {
-                Console.WriteLine($"{i++}. {item.Namn}");
+                Console.WriteLine($"{i++}. {item.Name}");
             }
         }
 
@@ -99,10 +100,14 @@ namespace Klasskamrater
             while (loginSuccess == false)
             {
                 Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
-                string lösenord = Console.ReadLine();
-                if (lösenord == "norrlänningarna")
+                string password = Console.ReadLine();
+                if (password == "norrlänningarna")
                 {
                     loginSuccess = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Välkommen! Du loggas nu in");
+                    Console.ResetColor();
+                    Thread.Sleep(2000);
                 }
                 else
                 {

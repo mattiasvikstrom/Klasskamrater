@@ -8,7 +8,7 @@ namespace Klasskamrater
     {
         static void Main(string[] args)
         {
-            Metoder.Run();
+            Methods.Run();
         }
     }
 }

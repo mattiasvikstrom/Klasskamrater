@@ -46,7 +46,7 @@ namespace Klasskamrater
             public string ProgrammingMotivation { get => programmingMotivation; set => programmingMotivation = value; }
             public static List<ClassMates> People { get => People; set => People = value; }
 
-        // skriver ut beksivningen på medlemmar i KlassKamrat, denna override ger oss något mer meningfullt än den inbyggda ToString för people. I programmet körs denna vid ListSpecific()
+        //skriver ut beksivningen på medlemmar i KlassKamrat, denna override ger oss något mer meningfullt än den inbyggda ToString för people. I programmet körs denna vid ListSpecific()
         public override string ToString()
         {
             return $"\nHej jag heter {name}, är {age} gammal och {length}cm lång. Jag bor i {city} och på min fritid tycker jag om att {hobby}. Min favoritmat är {favouriteFood} " +

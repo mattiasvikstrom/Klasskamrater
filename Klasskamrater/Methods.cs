@@ -17,35 +17,41 @@ namespace Klasskamrater
         //Huvudmenyn för programmet.
         private static void MainMenu(List<ClassMates> people)
         {
-            int menuChoice;
+            
+            string menuChoice;
             do
             {
                 Console.WriteLine("\n1. Visa detaljer om medlemmen");
                 Console.WriteLine("2. Ta bort en person");
                 Console.WriteLine("3. Lista alla medlemmar");
                 Console.WriteLine("4. Avsluta\n");
+                //Tar in en string och ber om nytt input om det inte matchar nummer 1-4
+                menuChoice = Console.ReadLine();
+                Console.Write(">> ");
 
-                menuChoice = Convert.ToInt32(Console.ReadLine());
 
                 switch (menuChoice)
                 {
-                    case 1:
+                    case "1":
                         ListSpecific(people);
                         break;
-                    case 2:
+                    case "2":
                         DeleteSpecific(people);
                         break;
-                    case 3:
+                    case "3":
                         ListMembers(people);
                         break;
-                    case 4:
+                    case "4":
                         Environment.Exit(0);
                         break;
+                    default:
+                        Console.WriteLine("Välj ett av alternativen");
+                        break;
                 }
-            } while (menuChoice != 4);
+            } while (menuChoice != "4");
         }
 
-        // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
+        // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, och att det är en int och ifall listan inte är tom.
         private static void DeleteSpecific(List<ClassMates> people)
         {
             Console.Clear();
@@ -88,7 +94,7 @@ namespace Klasskamrater
             }
         }
 
-        // listar alla medlemmar i KlassKamrat med numrering för att underlätta val av medlem
+        // listar alla medlemmar i KlassKamrat med numrering för att underlätta val av medlem med input int
         private static void ListMembers(List<ClassMates> People)
         {
             Console.Clear();
@@ -128,12 +134,14 @@ namespace Klasskamrater
                     Console.ResetColor();
                     Thread.Sleep(2000);
                 }
+                //5 försök sedan kommer programmet ifrågasätta om du ska komma in och stängas ner efter 3 sekunder
                 else if(counter >= 5)
                 {
                     Console.WriteLine("Du verkar inte ha åtkomst till detta program.. det kommer avslutas om 3 sekunder");
                     Thread.Sleep(3000);
                     Environment.Exit(0);
                 }
+                //Om fel lösenord och <= 5 försök får du fel samt antal försök hittils.
                 else
                 {
                     Console.WriteLine("Fel lösenord. Försök igen");

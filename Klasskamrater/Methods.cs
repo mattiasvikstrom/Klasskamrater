@@ -6,7 +6,7 @@ namespace Klasskamrater
 {
     class Methods
     {
-        //Huvudmenyn för programmet. 
+         //Här initieras List för klasskamrater, hantras inloggning för användren och om lyckad körs MainMenu
         public static void Run()
         {
             //Kallar på PopuleraLista som lägger till våra klasskamrater i people
@@ -14,7 +14,7 @@ namespace Klasskamrater
             Loggin();
             MainMenu(people);
         }
-
+        //Huvudmenyn för programmet.
         private static void MainMenu(List<ClassMates> people)
         {
             int menuChoice;
@@ -109,14 +109,17 @@ namespace Klasskamrater
         }
 
         // jämför lösenordet if success annars felmeddelande. Validerar lösenordet mot en exakt sträng.
+        //användaren får 5 försök på sig annars avslutas programmet efter meddelande om detta. counter räknar antal försök från användaren
         public static void Loggin()
         {
+            Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
+            int counter = 0;
             bool loginSuccess = false;
             while (loginSuccess == false)
             {
-                Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
                 Console.Write(">> ");
                 string password = Console.ReadLine();
+                counter++;
                 if (password == "norrlänningarna")
                 {
                     loginSuccess = true;
@@ -125,9 +128,16 @@ namespace Klasskamrater
                     Console.ResetColor();
                     Thread.Sleep(2000);
                 }
+                else if(counter >= 5)
+                {
+                    Console.WriteLine("Du verkar inte ha åtkomst till detta program.. det kommer avslutas om 3 sekunder");
+                    Thread.Sleep(3000);
+                    Environment.Exit(0);
+                }
                 else
                 {
                     Console.WriteLine("Fel lösenord. Försök igen");
+                    Console.WriteLine($"försök: {counter}");
                 }
             }
         }

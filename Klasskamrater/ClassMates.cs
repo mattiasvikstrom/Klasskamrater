@@ -33,7 +33,6 @@ namespace Klasskamrater
             this.children = children;
             this.programmingMotivation = programmingMotivation;
         }
-
             public string Name { get => name; set => name = value; }
             public int Age { get => age; set => age = value; }
             public int Length { get => length; set => length = value; }

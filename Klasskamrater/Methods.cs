@@ -11,13 +11,12 @@ namespace Klasskamrater
         {
             //Kallar på PopuleraLista som lägger till våra klasskamrater i people
             List<ClassMates> people = MemberHandler.PopulateList();
-            Loggin();
+            Login();
             MainMenu(people);
         }
         //Huvudmenyn för programmet.
         private static void MainMenu(List<ClassMates> people)
         {
-            
             string menuChoice;
             do
             {
@@ -28,7 +27,6 @@ namespace Klasskamrater
                 //Tar in en string och ber om nytt input om det inte matchar nummer 1-4
                 menuChoice = Console.ReadLine();
                 Console.Write(">> ");
-
 
                 switch (menuChoice)
                 {
@@ -50,7 +48,6 @@ namespace Klasskamrater
                 }
             } while (menuChoice != "4");
         }
-
         // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, och att det är en int och ifall listan inte är tom.
         private static void DeleteSpecific(List<ClassMates> people)
         {
@@ -116,7 +113,7 @@ namespace Klasskamrater
 
         // jämför lösenordet if success annars felmeddelande. Validerar lösenordet mot en exakt sträng.
         //användaren får 5 försök på sig annars avslutas programmet efter meddelande om detta. counter räknar antal försök från användaren
-        public static void Loggin()
+        public static void Login()
         {
             Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
             int counter = 0;

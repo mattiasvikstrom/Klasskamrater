@@ -12,8 +12,12 @@ namespace Klasskamrater
             //Kallar på PopuleraLista som lägger till våra klasskamrater i people
             List<ClassMates> people = MemberHandler.PopulateList();
             Loggin();
-            int menuChoice;
+            MainMenu(people);
+        }
 
+        private static void MainMenu(List<ClassMates> people)
+        {
+            int menuChoice;
             do
             {
                 Console.WriteLine("\n1. Visa detaljer om medlemmen");
@@ -40,13 +44,14 @@ namespace Klasskamrater
                 }
             } while (menuChoice != 4);
         }
+
         // Tar bort vald person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
         private static void DeleteSpecific(List<ClassMates> people)
         {
             Console.Clear();
             Console.WriteLine("\nVem vill du ta bort?");
             ListMembers(people);
-            Console.Write("input: ");
+            Console.Write(">> ");
             string stringNumber = Console.ReadLine();
             int intNumber;
             if (Int32.TryParse(stringNumber, out intNumber) && intNumber >= 1 && intNumber <= people.Count && people.Count != 0)
@@ -60,6 +65,7 @@ namespace Klasskamrater
             {
                 Console.WriteLine("Ojdå. där fanns det ingen klasskamrat.");
             }
+
         }
         // Listar en specifik person från listan, validering sker för att hålla valen inom ramarna för listan, att det är en int och ifall listan inte är tom.
         private static void ListSpecific(List<ClassMates> people)
@@ -67,7 +73,7 @@ namespace Klasskamrater
             Console.Clear();
             Console.WriteLine("\nVem vill du se mer om");
             ListMembers(people);
-            Console.Write("input: ");
+            Console.Write(">> ");
             string stringNumber = Console.ReadLine();
 
             int intNumber;
@@ -87,19 +93,29 @@ namespace Klasskamrater
         {
             Console.Clear();
             int i = 1;
-            foreach (var item in People) 
+            if (People.Count != 0)
             {
-                Console.WriteLine($"{i++}. {item.Name}");
+                foreach (var member in People)
+                {
+                    Console.WriteLine($"{i++}. {member.Name}");
+                }
+            }
+            //ifall listan är tom så slipper användaren gå vidare i menyerna för att skriva in input då den ändå är tom.
+            else
+            {
+                Console.WriteLine("Listan är helt tom, nu finns inte så mycket mer att göra nu");
+                MainMenu(People);
             }
         }
 
-        // jämför lösenordet if success annars felmeddelande och validerar lösenordet
+        // jämför lösenordet if success annars felmeddelande. Validerar lösenordet mot en exakt sträng.
         public static void Loggin()
         {
             bool loginSuccess = false;
             while (loginSuccess == false)
             {
                 Console.WriteLine("Hej och välkommen! vänligen skriv in lösenordet nedan: ");
+                Console.Write(">> ");
                 string password = Console.ReadLine();
                 if (password == "norrlänningarna")
                 {
